@@ -45,6 +45,19 @@
         "printWidth": 100,
         "semi": true,
         "singleQuote": true,
-        "tabWidth": 4
+        "tabWidth": 4,
+        "attributeGroups": [
+            "$ANGULAR_STRUCTURAL_DIRECTIVE",
+            "$ANGULAR_ELEMENT_REF",
+            "$CODE_GUIDE",
+            "^formControlName$",
+            "^icon$",
+            "^label$",
+            "^placeholder$",
+            "^routerLink$",
+            "^[a-z]",
+            "$ANGULAR"
+        ],
+        "attributeSort": "ASC"
     }
 }
