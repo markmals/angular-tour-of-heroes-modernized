@@ -1,30 +1,50 @@
 {
-  "name": "angular-toh-modernized",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "^16.0.0-next.0",
-    "@angular/common": "^16.0.0-next.0",
-    "@angular/compiler": "^16.0.0-next.0",
-    "@angular/core": "^16.0.0-next.0",
-    "@angular/forms": "^16.0.0-next.0",
-    "@angular/platform-browser": "^16.0.0-next.0",
-    "@angular/platform-browser-dynamic": "^16.0.0-next.0",
-    "@angular/router": "^16.0.0-next.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^16.0.0-next.3",
-    "@angular/cli": "~16.0.0-next.3",
-    "@angular/compiler-cli": "^16.0.0-next.0",
-    "typescript": "~4.9.4"
-  }
+    "name": "angular-toh-modernized",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "ng serve",
+        "format": "prettier -w .",
+        "dev": "concurrently 'npm run serve' 'npm run watch'",
+        "serve": "http-server ./dist/angular-toh-modernized",
+        "build": "ng build",
+        "watch": "ng build --watch --configuration development",
+        "ng": "ng"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "^16.0.0-next",
+        "@angular/common": "^16.0.0-next",
+        "@angular/compiler": "^16.0.0-next",
+        "@angular/core": "^16.0.0-next",
+        "@angular/forms": "^16.0.0-next",
+        "@angular/platform-browser": "^16.0.0-next",
+        "@angular/platform-browser-dynamic": "^16.0.0-next",
+        "@angular/router": "^16.0.0-next",
+        "angular-in-memory-web-api": "^0.15.0",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0",
+        "zone.js": "~0.13.0"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "^16.0.0-next",
+        "@angular/cli": "~16.0.0-next",
+        "@angular/compiler-cli": "^16.0.0-next",
+        "@tailwindcss/forms": "^0.5.3",
+        "concurrently": "^7.6.0",
+        "http-server": "^14.1.1",
+        "postcss": "^8.4.21",
+        "prettier": "^2.8.4",
+        "prettier-plugin-organize-attributes": "^0.0.5",
+        "prettier-plugin-organize-imports": "^3.2.2",
+        "prettier-plugin-tailwindcss": "^0.2.4",
+        "tailwindcss": "^3.2.7",
+        "typescript": "~4.9.4"
+    },
+    "prettier": {
+        "arrowParens": "avoid",
+        "printWidth": 100,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 4
+    }
 }
