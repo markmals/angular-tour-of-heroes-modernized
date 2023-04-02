@@ -1,6 +1,6 @@
 # Angular Tour of Heroes (Modernized)
 
-This project contains a completed version of the web app from [Angular's Tour of Heroes tutorial](https://angular.io/tutorial/tour-of-heroes), with modifications to showcase the latest built-in Angular features as of [version `16.0.0-next`](https://github.com/angular/angular/releases/tag/16.0.0-next.2). Those changes include:
+This project contains a completed version of the web app from [Angular's Tour of Heroes tutorial](https://angular.io/tutorial/tour-of-heroes), with modifications to showcase the latest built-in Angular features as of [version `16.0.0-next`](https://github.com/angular/angular/releases/tag/16.0.0-next.5). Those changes include:
 
 -   [Standalone components](https://angular.io/guide/standalone-components#creating-standalone-components), [application](https://angular.io/guide/standalone-components#bootstrapping-an-application-using-a-standalone-component), and [routing](https://angular.io/guide/standalone-components#routing-and-lazy-loading)
 -   Inline templates and styles
