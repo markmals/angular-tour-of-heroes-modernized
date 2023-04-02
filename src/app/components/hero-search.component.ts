@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -47,26 +47,23 @@ import { fromObservable, fromSignal } from '../utilities/rxjs-interop';
         </div>
     `,
 })
-export class HeroSearchComponent implements OnInit {
-    heroes!: Signal<Hero[]>;
-    private searchTerm = signal<string>('');
+export class HeroSearchComponent {
     private heroService = inject(HeroService);
+    private searchTerm = signal<string>('');
+
+    heroes = fromObservable(
+        fromSignal(this.searchTerm).pipe(
+            // wait 300ms after each keystroke before considering the term
+            debounceTime(300),
+            // ignore new term if same as previous term
+            distinctUntilChanged(),
+            // switch to new search observable each time the term changes
+            switchMap((term: string) => this.heroService.searchHeroes(term))
+        ),
+        [] as Hero[]
+    );
 
     search(term: string) {
         this.searchTerm.set(term);
-    }
-
-    ngOnInit() {
-        this.heroes = fromObservable(
-            fromSignal(this.searchTerm).pipe(
-                // wait 300ms after each keystroke before considering the term
-                debounceTime(300),
-                // ignore new term if same as previous term
-                distinctUntilChanged(),
-                // switch to new search observable each time the term changes
-                switchMap((term: string) => this.heroService.searchHeroes(term))
-            ),
-            [] as Hero[]
-        );
     }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { MessagesComponent } from './components/messages.component';
@@ -24,16 +24,16 @@ import { fromObservable } from './utilities/rxjs-interop';
                             <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                                 <a
                                     class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
-                                    [class.current]="location() === '/dashboard'"
-                                    [class.default]="location() !== '/dashboard'"
+                                    [class.current]="isDashboard()"
+                                    [class.default]="!isDashboard()"
                                     routerLink="/dashboard"
                                 >
                                     Dashboard
                                 </a>
                                 <a
                                     class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
-                                    [class.current]="location() === '/heroes'"
-                                    [class.default]="location() !== '/heroes'"
+                                    [class.current]="isHeroes()"
+                                    [class.default]="!isHeroes()"
                                     routerLink="/heroes"
                                 >
                                     Heroes
@@ -77,17 +77,17 @@ import { fromObservable } from './utilities/rxjs-interop';
         `,
     ],
 })
-export class AppComponent implements OnInit {
-    location!: Signal<string>;
-
+export class AppComponent {
     private router = inject(Router);
 
-    ngOnInit() {
-        this.location = fromObservable(
-            this.router.events.pipe(
-                filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
-                map(event => event.url)
-            )
-        );
-    }
+    location = fromObservable(
+        this.router.events.pipe(
+            filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
+            map(event => event.url)
+        ),
+        undefined
+    );
+
+    isHeroes = computed(() => this.location() === '/heroes');
+    isDashboard = computed(() => this.location() === '/dashboard');
 }
