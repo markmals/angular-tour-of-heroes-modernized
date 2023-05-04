@@ -8,7 +8,7 @@
 // Will angular-in-memory-web-api work with fetch?
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { catchError, map, tap } from 'rxjs/operators';

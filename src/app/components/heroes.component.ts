@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
@@ -33,20 +33,20 @@ import { HeroService } from '../services/hero.service';
                     <div class="sm:flex sm:items-center">
                         <div class="w-full sm:max-w-xs">
                             <input
+                                #heroName
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                                 id="hero-name"
-                                #heroName
-                                (keypress)="onEnter($event, button)"
-                                type="text"
                                 name="hero-name"
+                                type="text"
                                 placeholder="e.g. Wonder Woman, She-Hulk, etc."
+                                (keypress)="onEnter($event, button)"
                             />
                         </div>
                         <button
-                            class="mt-3 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:mt-0 sm:ml-3 sm:w-auto"
                             #button
-                            (click)="add(heroName.value); heroName.value = ''"
+                            class="mt-3 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:ml-3 sm:mt-0 sm:w-auto"
                             type="button"
+                            (click)="add(heroName.value); heroName.value = ''"
                         >
                             Add Hero
                         </button>
@@ -55,12 +55,12 @@ import { HeroService } from '../services/hero.service';
             </div>
         </div>
 
-        <span class="flex flex-row justify-center" *ngIf="!heroes().length" role="status">
+        <span *ngIf="!heroes().length" class="flex flex-row justify-center" role="status">
             <svg
                 class="mr-2 h-7 w-7 animate-spin fill-red-600 text-gray-200"
                 aria-hidden="true"
-                viewBox="0 0 100 101"
                 fill="none"
+                viewBox="0 0 100 101"
             >
                 <path
                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -75,18 +75,18 @@ import { HeroService } from '../services/hero.service';
         </span>
 
         <ul
-            class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
             *ngIf="heroes().length"
+            class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
             role="list"
         >
-            <li class="col-span-1 flex rounded-md shadow-sm" *ngFor="let hero of heroes()">
+            <li *ngFor="let hero of heroes()" class="col-span-1 flex rounded-md shadow-sm">
                 <div
                     class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md bg-red-700 text-sm font-medium text-white"
                 >
                     {{ hero.id }}
                 </div>
                 <div
-                    class="flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white"
+                    class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white"
                 >
                     <div class="flex-1 truncate px-4 py-2 text-sm">
                         <a
@@ -99,16 +99,16 @@ import { HeroService } from '../services/hero.service';
                     </div>
                     <div class="flex-shrink-0 pr-2">
                         <button
-                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white bg-transparent text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            (click)="delete(hero)"
+                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             type="button"
+                            (click)="delete(hero)"
                         >
                             <span class="sr-only">Delete Hero</span>
-                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
-                                    fill-rule="evenodd"
-                                    d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
                                     clip-rule="evenodd"
+                                    d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                                    fill-rule="evenodd"
                                 />
                             </svg>
                         </button>

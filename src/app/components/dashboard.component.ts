@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
@@ -9,6 +9,7 @@ import { HeroSearchComponent } from './hero-search.component';
     selector: 'app-dashboard',
     standalone: true,
     imports: [NgIf, NgFor, RouterLink, HeroSearchComponent],
+    encapsulation: ViewEncapsulation.None,
     template: `
         <header>
             <div class="mx-auto max-w-7xl">
@@ -20,12 +21,12 @@ import { HeroSearchComponent } from './hero-search.component';
 
         <div class="flex flex-row justify-center gap-4">
             <!-- Prevent CLS with a placeholder element: https://web.dev/cls/ -->
-            <span class="px-2 py-1 text-sm font-medium" *ngIf="!heroes().length" role="status">
+            <span *ngIf="!heroes().length" class="px-2 py-1 text-sm font-medium" role="status">
                 <svg
                     class="mr-2 h-7 w-7 animate-spin fill-red-600 text-gray-200"
                     aria-hidden="true"
-                    viewBox="0 0 100 101"
                     fill="none"
+                    viewBox="0 0 100 101"
                 >
                     <path
                         d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -40,8 +41,8 @@ import { HeroSearchComponent } from './hero-search.component';
             </span>
 
             <a
-                class="inline-flex items-center rounded-full bg-red-100 px-4 py-2 text-sm font-medium text-red-800 hover:bg-red-200"
                 *ngFor="let hero of heroes()"
+                class="inline-flex items-center rounded-full bg-red-100 px-4 py-2 text-sm font-medium text-red-800 hover:bg-red-200"
                 routerLink="/detail/{{ hero.id }}"
             >
                 {{ hero.name }}
