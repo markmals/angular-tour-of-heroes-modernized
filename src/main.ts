@@ -1,6 +1,6 @@
 import { importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter, Routes } from '@angular/router';
+import { provideRouter, Routes, withInMemoryScrolling } from '@angular/router';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './app/services/in-memory-data.service';
@@ -29,7 +29,7 @@ const routes: Routes = [
 
 bootstrapApplication(AppComponent, {
     providers: [
-        provideRouter(routes),
+        provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
         provideHttpClient(),
 
         // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
