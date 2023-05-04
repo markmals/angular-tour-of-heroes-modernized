@@ -85,8 +85,7 @@ export class AppComponent {
         this.router.events.pipe(
             filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
             map(event => event.url)
-        ),
-        undefined
+        )
     );
 
     isHeroes = computed(() => this.location() === '/heroes');
