@@ -8,6 +8,7 @@ This project contains a completed version of the web app from [Angular's Tour of
 -   [ESBuild-based Angular builder](https://angular.io/guide/esbuild) (`@angular-devkit/build-angular:browser-esbuild`)
 -   [Vite-based Angular development server](https://angular.io/guide/esbuild#vite-as-a-development-server)
 -   [Signals](https://angular.io/guide/signals) for state management
+-   [`OnPush` change detection](https://angular.io/guide/signals#reading-signals-in-onpush-components) in the root component, so only components with signal dependencies that update get marked for check by the change detector
 -   [`toSignal()` and `toObservable()`](https://angular.io/guide/rxjs-interop) interoperability functions
 -   [Tailwind CSS](https://tailwindcss.com/docs/guides/angular) atomic styling with a [TypeScript configuration file](https://tailwindcss.com/blog/tailwindcss-v3-3#esm-and-typescript-support)
 -   [Tailwind UI](https://tailwindui.com/components) design system components

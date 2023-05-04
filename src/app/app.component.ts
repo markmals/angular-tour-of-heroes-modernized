@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Event, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -7,6 +7,7 @@ import { MessagesComponent } from './components/messages.component';
 @Component({
     selector: 'app-root',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet, RouterLink, MessagesComponent],
     template: `
         <div class="min-h-full">
