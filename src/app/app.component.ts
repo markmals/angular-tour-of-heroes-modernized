@@ -1,8 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Event, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { MessagesComponent } from './components/messages.component';
-import { fromObservable } from './utilities/rxjs-interop';
 
 @Component({
     selector: 'app-root',
@@ -24,17 +24,17 @@ import { fromObservable } from './utilities/rxjs-interop';
                             <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                                 <a
                                     class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
+                                    routerLink="/dashboard"
                                     [class.current]="isDashboard()"
                                     [class.default]="!isDashboard()"
-                                    routerLink="/dashboard"
                                 >
                                     Dashboard
                                 </a>
                                 <a
                                     class="inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
+                                    routerLink="/heroes"
                                     [class.current]="isHeroes()"
                                     [class.default]="!isHeroes()"
-                                    routerLink="/heroes"
                                 >
                                     Heroes
                                 </a>
@@ -44,7 +44,7 @@ import { fromObservable } from './utilities/rxjs-interop';
                 </div>
             </nav>
 
-            <div class="flex flex-col gap-8 py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8">
                 <router-outlet></router-outlet>
 
                 <div class="relative">
@@ -80,7 +80,7 @@ import { fromObservable } from './utilities/rxjs-interop';
 export class AppComponent {
     private router = inject(Router);
 
-    location = fromObservable(
+    location = toSignal(
         this.router.events.pipe(
             filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
             map(event => event.url)
