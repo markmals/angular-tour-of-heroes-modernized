@@ -16,7 +16,6 @@
         "@angular/core": "^16.0.0",
         "@angular/platform-browser": "^16.0.0",
         "@angular/router": "^16.0.0",
-        "angular-in-memory-web-api": "^0.15.0",
         "rxjs": "~7.8.0",
         "tslib": "^2.4.0",
         "zone.js": "~0.13.0"
