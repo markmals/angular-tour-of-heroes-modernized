@@ -1,0 +1,3 @@
+# Temporarily disable formatting files with the new control flow 
+# syntax until Prettier supports it
+/src/app/components/**/*.ts

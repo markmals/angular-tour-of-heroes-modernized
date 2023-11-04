@@ -1,4 +1,4 @@
-import { Location, NgClass, NgIf } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../models/hero';
@@ -7,7 +7,7 @@ import { HeroService } from '../services/hero.service';
 @Component({
     selector: 'app-hero-detail',
     standalone: true,
-    imports: [NgIf, NgClass],
+    imports: [NgClass],
     template: `
         <div class="mb-6 flex flex-row">
             <button
@@ -34,8 +34,11 @@ import { HeroService } from '../services/hero.service';
         <div class="overflow-hidden bg-white shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
                 <h3 class="text-base font-semibold leading-6 text-gray-900">
-                    <span *ngIf="!hero()" class="flex h-6 w-40 animate-pulse bg-gray-300"></span>
-                    <span *ngIf="hero()">{{ hero()?.name }} Details</span>
+                    @if (!hero()) {
+                        <span class="flex h-6 w-40 animate-pulse bg-gray-300"></span>
+                    } @else {
+                        <span>{{ hero()?.name }} Details</span>
+                    }
                 </h3>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
@@ -44,11 +47,11 @@ import { HeroService } from '../services/hero.service';
                         <dt class="text-sm font-medium text-gray-500">ID</dt>
 
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                            <span
-                                *ngIf="!hero()"
-                                class="flex h-5 w-6 animate-pulse bg-gray-300"
-                            ></span>
-                            <span *ngIf="hero()">{{ hero()?.id }}</span>
+                            @if (!hero()) {
+                                <span class="flex h-5 w-6 animate-pulse bg-gray-300"></span>
+                            } @else {
+                                <span>{{ hero()?.id }}</span>
+                            }
                         </dd>
                     </div>
                 </dl>
