@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Event, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -68,12 +68,18 @@ import { MessagesComponent } from './components/messages.component';
     styles: [
         `
             a.current {
-                @apply border-blue-500 text-gray-900;
+                color: theme('colors.gray.900');
+                border-color: theme('colors.blue.500');
             }
 
             a.default {
-                @apply border-transparent text-gray-500 
-                hover:border-gray-300 hover:text-gray-700;
+                color: theme('colors.gray.500');
+                border-color: transparent;
+            }
+
+            a.default:hover {
+                color: theme('colors.gray.700');
+                border-color: theme('colors.gray.300');
             }
         `,
     ],
@@ -88,6 +94,6 @@ export class AppComponent {
         )
     );
 
-    isHeroes = computed(() => this.location() === '/heroes');
-    isDashboard = computed(() => this.location() === '/dashboard');
+    isHeroes = () => this.location() === '/heroes';
+    isDashboard = () => this.location() === '/dashboard';
 }
