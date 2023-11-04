@@ -141,7 +141,7 @@ export class HeroesComponent implements OnInit {
         this.heroService
             .addHero({ id: Math.floor(Math.random() * 90 + 10), name } as Hero)
             .subscribe(hero => {
-                this.heroes.mutate(heroes => heroes.push(hero));
+                this.heroes.update(heroes => [...heroes, hero]);
             });
     }
 

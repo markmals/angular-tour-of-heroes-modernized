@@ -117,8 +117,9 @@ export class HeroDetailComponent implements OnInit {
     }
 
     onInput(value: string) {
-        this.hero.mutate(hero => {
+        this.hero.update(hero => {
             if (hero) hero.name = value;
+            return hero;
         });
     }
 

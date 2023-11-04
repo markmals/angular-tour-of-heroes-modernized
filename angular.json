@@ -80,10 +80,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "angular-toh-modernized:build:production"
+                          "buildTarget": "angular-toh-modernized:build:production"
                         },
                         "development": {
-                            "browserTarget": "angular-toh-modernized:build:development"
+                          "buildTarget": "angular-toh-modernized:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "angular-toh-modernized:build"
+                      "buildTarget": "angular-toh-modernized:build"
                     }
                 }
             }
