@@ -18,7 +18,7 @@ import { MessagesComponent } from './components/messages.component';
                             <div class="flex flex-shrink-0 items-center">
                                 <img
                                     class="h-12 w-auto lg:block"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg"
+                                    src="/assets/angular-signals.png"
                                     alt="Angular Logo"
                                 />
                             </div>
@@ -90,8 +90,8 @@ export class AppComponent {
     location = toSignal(
         this.router.events.pipe(
             filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
-            map(event => event.url)
-        )
+            map(event => event.url),
+        ),
     );
 
     isHeroes = () => this.location() === '/heroes';
