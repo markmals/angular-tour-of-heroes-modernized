@@ -17,7 +17,7 @@ import { NewHeroComponent } from './new-hero.component';
             </div>
         </header>
 
-        <app-new-hero [heroes]="heroes" />
+        <app-new-hero [(heroes)]="heroes" />
 
         @if (!heroes().length) {
             <span class="flex flex-row justify-center" role="status">

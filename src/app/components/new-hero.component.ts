@@ -1,4 +1,4 @@
-import { Component, WritableSignal, inject, input } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
@@ -48,7 +48,7 @@ import { HeroService } from '../services/hero.service';
     `,
 })
 export class NewHeroComponent {
-    heroes = input.required<WritableSignal<Hero[]>>();
+    heroes = model.required<Hero[]>();
     private heroService = inject(HeroService);
 
     add(name: string) {
@@ -58,12 +58,12 @@ export class NewHeroComponent {
         this.heroService
             .addHero({ id: Math.floor(Math.random() * 90 + 10), name } as Hero)
             .subscribe(hero => {
-                this.heroes().update(heroes => [...heroes, hero]);
+                this.heroes.update(heroes => [...heroes, hero]);
             });
     }
 
     delete(hero: Hero) {
-        this.heroes().update(heroes => heroes.filter(h => h !== hero));
+        this.heroes.update(heroes => heroes.filter(h => h !== hero));
         this.heroService.deleteHero(hero.id).subscribe();
     }
 
